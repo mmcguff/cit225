@@ -7,8 +7,8 @@
 -- This creates tables, sequences, indexes, and constraints necessary
 -- to begin lesson #3. Demonstrates proper process and syntax.
 -- ------------------------------------------------------------------
-@C:\Users\mmcguff\Documents\cit225\cleanup_oracle.sql
-@C:\Users\mmcguff\Documents\cit225\create_oracle_store.sql
+@C:\Users\matth_000\Documents\byui\cit225\cit225\cleanup_oracle.sql
+@C:\Users\matth_000\Documents\byui\cit225\cit225\create_oracle_store.sql
 
 
 -- Open log file.
@@ -73,7 +73,7 @@ ALTER TABLE system_user_lab
 ADD CONSTRAINT fk_system_user_lab_1 FOREIGN KEY(created_by) REFERENCES system_user_lab(system_user_lab_id);
 
 ALTER TABLE system_user_lab
-ADD CONSTRAINT fk_system_user_lab_2 FOREIGN KEY(last_updated_by) REFERENCES system_user_lab(system_user__lab_id);
+ADD CONSTRAINT fk_system_user_lab_2 FOREIGN KEY(last_updated_by) REFERENCES system_user_lab(system_user_lab_id);
 
 -- ------------------------------------------------------------------
 -- Create COMMON_LOOKUP_LAB table and sequence and seed data.
@@ -205,10 +205,10 @@ CREATE TABLE member_lab
 , CONSTRAINT fk_member_lab_4  FOREIGN KEY(last_updated_by) REFERENCES system_user_lab(system_user_lab_id));
 
 -- Create a non-unique index.
-CREATE INDEX member_n1 ON member(credit_card_type);
+CREATE INDEX member_lab_n1 ON member_lab(credit_card_type);
 
 -- Create a sequence.
-CREATE SEQUENCE member_s1 START WITH 1001;
+CREATE SEQUENCE member_lab_s1 START WITH 1001;
 
 -- ------------------------------------------------------------------
 -- Create CONTACT_LAB table and sequence and seed data.
@@ -247,7 +247,7 @@ CREATE INDEX contact_lab_n1 ON contact_lab(member_lab_id);
 CREATE INDEX contact_lab_n2 ON contact_lab(contact_type);
 
 -- Create sequence.
-CREATE SEQUENCE contact_s1 START WITH 1001;
+CREATE SEQUENCE contact_lab_s1 START WITH 1001;
 
 -- ------------------------------------------------------------------
 -- Create ADDRESS_LAB table and sequence.
@@ -283,7 +283,7 @@ CREATE TABLE address_lab
 
 -- Create a non-unique index.
 CREATE INDEX address_lab_n1 ON address_lab(contact_lab_id);
-CREATE INDEX address_lab_n2 ON address(address_type);
+CREATE INDEX address_lab_n2 ON address_lab(address_type);
 
 -- Create a sequence.
 CREATE SEQUENCE address_lab_s1 START WITH 1001;
@@ -354,8 +354,8 @@ CREATE TABLE telephone_lab
 
 -- Create non-unique indexes.
 CREATE INDEX telephone_lab_n1 ON telephone_lab(contact_lab_id,address_lab_id);
-CREATE INDEX telephone_lab_n2 ON telephone(address_lab_id);
-CREATE INDEX telephone_lab_n3 ON telephone(telephone_type);
+CREATE INDEX telephone_lab_n2 ON telephone_lab(address_lab_id);
+CREATE INDEX telephone_lab_n3 ON telephone_lab(telephone_type);
 
 -- Create sequence.
 CREATE SEQUENCE telephone_lab_s1 START WITH 1001;
